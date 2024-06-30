@@ -20,6 +20,21 @@ function ProfilePicture({ profile }: any) {
 
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <UploadDropzone
+            className="w-full border-2 border-white rounded-lg"
+            appearance={{
+              button:
+                "ut-ready:bg-backgroundBlue ut-uploading:cursor-not-allowed bg-red-500 bg-none after:bg-orange-400",
+            }}
+            content={{
+              label({ ready, isUploading }) {
+                if (!ready)
+                  return (
+                    <div className="color-white">Drop or Click to Upload</div>
+                  );
+                if (isUploading) return "Uploading your proile picture";
+                return "Drop or Click to Upload a Profile Picture";
+              },
+            }}
             endpoint="imageUploader"
             onClientUploadComplete={(res) => {
               // Do something with the response
