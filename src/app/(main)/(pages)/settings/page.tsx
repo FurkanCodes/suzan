@@ -3,7 +3,7 @@ import React from "react";
 import ProfilePicture from "./_components/profile-picture";
 import { currentUser } from "@clerk/nextjs/server";
 import { db } from "@/lib/db";
-import { profile } from "console";
+import { utapi } from "@/server/uploadthing";
 
 const Settings = async () => {
   const authUser = await currentUser();
@@ -13,6 +13,27 @@ const Settings = async () => {
       clerkId: authUser.id,
     },
   });
+
+  const deleteProfileImage = async () => {
+    "use server";
+    // Assuming the image key is stored in the profile object
+    const imageKey = profile?.profileImage;
+
+    if (imageKey) {
+      console.log("image", imageKey);
+      await utapi.deleteFiles(
+        imageKey.substring(imageKey.lastIndexOf("/") + 1)
+      );
+      await db.user.update({
+        where: {
+          clerkId: authUser.id,
+        },
+        data: {
+          profileImage: null, // or an empty string "" based on your requirement
+        },
+      });
+    }
+  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -26,7 +47,7 @@ const Settings = async () => {
             Add or update your profile information here.
           </p>
         </div>
-        <ProfilePicture profile={profile} />
+        <ProfilePicture profile={profile} deleteImage={deleteProfileImage} />
         <ProfileForm />
       </div>
     </div>

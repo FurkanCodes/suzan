@@ -1,10 +1,12 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import { UploadDropzone } from "@/utils/uploadthing";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-function ProfilePicture({ profile }: any) {
+function ProfilePicture({ profile, deleteImage }: any) {
   const router = useRouter();
+
   return (
     <div className="flex flex-col">
       <p className="text-lg text-white">Profile Picture</p>
@@ -13,7 +15,7 @@ function ProfilePicture({ profile }: any) {
           <p className="text-lg text-white">Profile Picture</p>
           <img
             src={profile.profileImage}
-            alt="Profile Picture"
+            alt="Please upload a profile picture"
             className="w-32 h-32 object-cover rounded-full"
           />
         </div>
@@ -47,6 +49,15 @@ function ProfilePicture({ profile }: any) {
               alert(`ERROR! ${error.message}`);
             }}
           />
+          <Button
+            onClick={() =>
+              deleteImage(profile.profileImage)
+                .then(router.refresh)
+                .then(toast.success("Profile picture deleted"))
+            }
+          >
+            Delete your profile picture
+          </Button>
         </div>
       </div>
     </div>
