@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 const dm = DM_Sans({ subsets: ["latin"] });
 import { Toaster } from "react-hot-toast";
+import ModalProvider from "@/providers/modal-provider";
 export const metadata: Metadata = {
   title: "Suzan",
   description: "Automate your workflows",
@@ -22,15 +23,17 @@ export default function RootLayout({
       <html lang="en">
         <body className={dm.className}>
           {" "}
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Toaster position="top-center" reverseOrder={false} />
-            {children}
-          </ThemeProvider>
+          <ModalProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Toaster position="top-center" reverseOrder={false} />
+              {children}
+            </ThemeProvider>
+          </ModalProvider>
         </body>
       </html>
     </ClerkProvider>

@@ -34,6 +34,24 @@ const Settings = async () => {
       });
     }
   };
+  const onUpdate = async (name: any) => {
+    "use server";
+    try {
+      console.log("values", name);
+      const updatedProfile = await db.user.update({
+        where: {
+          clerkId: authUser.id,
+        },
+        data: {
+          name,
+        },
+      });
+      return updatedProfile;
+    } catch (error) {
+      console.error("Failed to update profile:", error);
+      throw error; // Rethrow the error to handle it further up the call stack
+    }
+  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -48,7 +66,7 @@ const Settings = async () => {
           </p>
         </div>
         <ProfilePicture profile={profile} deleteImage={deleteProfileImage} />
-        <ProfileForm />
+        <ProfileForm profile={profile} onUpdate={onUpdate} />
       </div>
     </div>
   );
