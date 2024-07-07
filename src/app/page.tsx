@@ -4,10 +4,12 @@ import {
   CardItem,
 } from "@/components/global/3dCard/3d-card";
 import { HeroParallax } from "@/components/global/ConnectParallax/ConnectParallax";
-import ContainerScroll from "@/components/global/ContainerScroll";
-import InfiniteMovingCards from "@/components/global/InfiniteMovingCards";
+import ContainerScroll from "@/components/global/ContainerScroll/ContainerScroll";
+import InfiniteMovingCards from "@/components/global/InfiniteMovingCards/InfiniteMovingCards";
+
 import { LampComponent } from "@/components/global/Lamb/Lamb";
-import Navbar from "@/components/global/Navbar";
+import Navbar from "@/components/global/Navbar/Navbar";
+
 import { TypeWriter } from "@/components/global/TypeWriter/TypeWriter";
 import { Button } from "@/components/ui/button";
 import { clients, products } from "@/lib/constants";
