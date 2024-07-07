@@ -1,11 +1,12 @@
 import { UserButton } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 import { MenuIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const Navbar: React.FC<any> = async () => {
-  const user = true;
+  const user = await currentUser();
   return (
     <header className="fixed right-0 left-0 top-0 z-50 w-full h-18 border-b border-gray-300  dark:border-neutral-700">
       <div className="flex items-center justify-between w-full h-full px-4 py-2 text-sm">
@@ -52,7 +53,7 @@ const Navbar: React.FC<any> = async () => {
             </span>
           </Link>
 
-          {true ? <UserButton afterSignOutUrl="/" /> : null}
+          {user ? <UserButton afterSignOutUrl="/" /> : null}
           <MenuIcon className="md:hidden" />
         </aside>
       </div>

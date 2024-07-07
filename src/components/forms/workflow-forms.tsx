@@ -25,6 +25,7 @@ import { Loader2 } from "lucide-react";
 
 import { useModal } from "@/providers/modal-provider";
 import toast from "react-hot-toast";
+import { onCreateWorkflow } from "@/app/(main)/(pages)/workflows/actions/actions";
 
 type Props = {
   title?: string;
@@ -46,9 +47,9 @@ const Workflowform = ({ subTitle, title }: Props) => {
   const router = useRouter();
 
   const handleSubmit = async (values: z.infer<typeof WorkflowFormSchema>) => {
-    // const workflow = await onCreateWorkflow(values.name, values.description);
+    const workflow = await onCreateWorkflow(values.name, values.description);
 
-    toast.success("workflow.message");
+    toast.success(workflow!.message);
     router.refresh();
 
     setClose();
