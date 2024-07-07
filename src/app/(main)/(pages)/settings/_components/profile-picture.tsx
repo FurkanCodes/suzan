@@ -14,7 +14,7 @@ function ProfilePicture({ profile, deleteImage }: any) {
         <div className="flex flex-col items-center justify-center mb-4 md:mb-0 md:mr-4">
           <p className="text-lg text-white">Profile Picture</p>
           <img
-            src={profile.profileImage}
+            src={profile?.profileImage}
             alt="Please upload a profile picture"
             className="w-32 h-32 object-cover rounded-full"
           />
@@ -51,7 +51,7 @@ function ProfilePicture({ profile, deleteImage }: any) {
           />
           <Button
             onClick={() =>
-              deleteImage(profile.profileImage)
+              deleteImage(profile?.profileImage)
                 .then(router.refresh)
                 .then(toast.success("Profile picture deleted"))
             }

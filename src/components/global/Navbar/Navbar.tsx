@@ -8,7 +8,7 @@ import React from "react";
 const Navbar: React.FC<any> = async () => {
   const user = await currentUser();
   return (
-    <header className="fixed right-0 left-0 top-0 z-50 w-full h-18 border-b border-gray-300  dark:border-neutral-700">
+    <header className="sticky backdrop-blur-md bg-black/30 right-0 left-0 top-0 z-50 w-full h-18 border-b border-gray-300  dark:border-neutral-700">
       <div className="flex items-center justify-between w-full h-full px-4 py-2 text-sm">
         <div className="flex items-center">
           <aside className="flex items-center gap-1">

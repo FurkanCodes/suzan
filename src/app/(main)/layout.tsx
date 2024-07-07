@@ -1,4 +1,5 @@
 import InfoBar from "@/components/infobar";
+
 import Sidebar from "@/components/sidebar/Sidebar";
 import React from "react";
 
@@ -10,6 +11,7 @@ const Layout = ({ children }: Props) => {
       <Sidebar />
       <div className="w-full">
         <InfoBar />
+
         {children}
       </div>
     </div>

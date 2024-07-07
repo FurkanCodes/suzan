@@ -18,8 +18,8 @@ function ProfileForm({ profile, onUpdate }: Props) {
   const form = useForm<z.infer<typeof EditUserProfileFormSchema>>({
     resolver: zodResolver(EditUserProfileFormSchema),
     defaultValues: {
-      name: profile.name,
-      email: profile.email,
+      name: profile?.name,
+      email: profile?.email,
     },
   });
 
@@ -33,7 +33,7 @@ function ProfileForm({ profile, onUpdate }: Props) {
   };
 
   useEffect(() => {
-    form.reset({ name: profile.name, email: profile.email });
+    form.reset({ name: profile?.name, email: profile?.email });
   }, [profile]);
   return (
     <Form {...form}>
@@ -71,7 +71,7 @@ function ProfileForm({ profile, onUpdate }: Props) {
                   disabled={true}
                   type="email"
                   placeholder="Email"
-                  value={profile.email}
+                  value={profile?.email}
                 />
               </FormControl>
             </FormItem>
